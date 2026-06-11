@@ -1,16 +1,20 @@
 <section>
-  <h2>Registrera konto</h2>
+  <h2>Register Account</h2>
   <input [(ngModel)]="registerName" placeholder="Username">
   <input [(ngModel)]="registerEmail" placeholder="Email">
   <input [(ngModel)]="registerPassword" type="password" placeholder="Password">
-  <button (click)="register()">Registrera</button>
-  <p *ngIf="registerMessage">{{ registerMessage }}</p>
+  <button (click)="register()">Register</button>
+  @if (registerMessage) {
+    <p>{{ registerMessage }}</p>
+  }
 </section>
 
 <section>
-  <h2>Logga in</h2>
+  <h2>Login</h2>
   <input [(ngModel)]="loginUsernameOrEmail" placeholder="Email or Username">
   <input [(ngModel)]="loginPassword" type="password" placeholder="Password">
-  <button (click)="login()">Logga in</button>
-  <p *ngIf="loginMessage">{{ loginMessage }}</p>
+  <button (click)="login()">Login</button>
+  @if (loginMessage) {
+    <p>{{ loginMessage }}</p>
+  }
 </section>

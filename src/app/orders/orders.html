@@ -1,12 +1,18 @@
 <section>
-  <h2>Mina beställningar</h2>
-  <button (click)="loadOrders()">Hämta mina ordrar</button>
+  <h2>My Orders</h2>
+  <button (click)="loadOrders()">Get my orders</button>
   <div class="orders">
-    <div class="order" *ngFor="let order of orders">
-      <p><strong>Order-ID:</strong> {{ order.id }}</p>
-      <p><strong>Status:</strong> {{ order.status }}</p>
-      <p *ngFor="let item of order.items">{{ item.productTitle }} x {{ item.quantity }}</p>
-    </div>
+    @for (order of orders; track order.id) {
+      <div class="order">
+        <p><strong>Order-ID:</strong> {{ order.id }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        @for (item of order.items; track item.productTitle) {
+          <p>{{ item.productTitle }} x {{ item.quantity }}</p>
+        }
+      </div>
+    }
   </div>
-  <p *ngIf="message">{{ message }}</p>
+  @if (message) {
+    <p>{{ message }}</p>
+  }
 </section>

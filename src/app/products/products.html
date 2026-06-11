@@ -1,14 +1,18 @@
 <section>
-  <h2>Produkter</h2>
-  <button (click)="loadProducts()">Hämta produkter</button>
+  <h2>Products</h2>
+  <button (click)="loadProducts()">Get products</button>
   <div class="products">
-    <div class="product" *ngFor="let product of products">
-      <h3>{{ product.title }}</h3>
-      <img [src]="product.image" alt="{{ product.title }}" width="100">
-      <p>{{ product.description }}</p>
-      <p><strong>Pris:</strong> {{ product.price }} kr</p>
-      <button (click)="order(product.id)">Beställ</button>
-    </div>
+    @for (product of products; track product.id) {
+      <div class="product">
+        <h3>{{ product.title }}</h3>
+        <img [src]="product.image" alt="{{ product.title }}" width="100">
+        <p>{{ product.description }}</p>
+        <p><strong>Price:</strong> {{ product.price }} kr</p>
+        <button (click)="order(product.id)">Order</button>
+      </div>
+    }
   </div>
-  <p *ngIf="message">{{ message }}</p>
+  @if (message) {
+    <p>{{ message }}</p>
+  }
 </section>
