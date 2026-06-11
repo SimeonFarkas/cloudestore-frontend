@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderService, Order } from '../services/order';
 
@@ -13,12 +13,12 @@ export class OrdersComponent {
   orders: Order[] = [];
   message = '';
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private cdr: ChangeDetectorRef) {}
 
   loadOrders() {
     this.orderService.getOrders().subscribe({
-      next: (data) => this.orders = data,
-      error: () => this.message = 'Kunde inte hämta ordrar.'
+      next: (data) => { this.orders = data; this.cdr.detectChanges(); },
+      error: () => { this.message = 'Could not fetch orders.'; this.cdr.detectChanges(); }
     });
   }
 }
