@@ -1,0 +1,12 @@
+<section>
+  <h2>Mina beställningar</h2>
+  <button (click)="loadOrders()">Hämta mina ordrar</button>
+  <div class="orders">
+    <div class="order" *ngFor="let order of orders">
+      <p><strong>Order-ID:</strong> {{ order.id }}</p>
+      <p><strong>Status:</strong> {{ order.status }}</p>
+      <p *ngFor="let item of order.items">{{ item.productTitle }} x {{ item.quantity }}</p>
+    </div>
+  </div>
+  <p *ngIf="message">{{ message }}</p>
+</section>
