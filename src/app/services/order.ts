@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth';
+import { environment } from '../../environments/environment';
 
 export interface OrderItem {
   productId: number;
@@ -15,7 +16,7 @@ export interface Order {
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
-  private apiUrl = 'http://localhost:8080/api/orders';
+  private apiUrl = `${environment.shopUserUrl}/api/orders`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
